@@ -1,5 +1,6 @@
 import { styled } from '@stitches/react';
-import { forwardRef } from 'react';
+import { HTMLAttributes, forwardRef } from 'react';
+import { CSSProps } from '../../types';
 
 const StyledUl = styled('ul', {
     listStyle: 'none',
@@ -42,25 +43,25 @@ const StyledArrow = styled('span', {
     cursor: 'pointer'
 });
 
-const DropdownMenu = forwardRef<HTMLDivElement, any & React.RefAttributes<HTMLDivElement>>(
+const DropdownMenu = forwardRef<HTMLDivElement, HTMLAttributes<HTMLUListElement> & CSSProps>(
     ({children, css, ...props}, ref) => {
-        return (
-            <StyledUl css={css} {...props} ref={ref}>
+        // @ts-ignore
+        return (<StyledUl css={css} {...props} ref={ref}>
                 {children}
             </StyledUl>
         )
 })
 
-const DropdownMenuContent = forwardRef<HTMLDivElement, any & React.RefAttributes<HTMLDivElement>>(
+const DropdownMenuContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLLIElement> & CSSProps>(
     ({children, css, ...props}, ref) => {
-        return (
-            <StyledLi css={css} {...props} ref={ref}>
+        // @ts-ignore
+        return (<StyledLi css={css} {...props} ref={ref}>
                 {children}
             </StyledLi>
         )
 })
 
-const DropdownMenuItem = forwardRef<HTMLDivElement, any & React.RefAttributes<HTMLDivElement>>(
+const DropdownMenuItem = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & CSSProps>(
     ({children, css, ...props}, ref) => {
         return (
             <StyledItem css={css} {...props} ref={ref}>
@@ -69,7 +70,7 @@ const DropdownMenuItem = forwardRef<HTMLDivElement, any & React.RefAttributes<HT
         )
 })
 
-const DropdownMenuLabel = forwardRef<HTMLDivElement, any & React.RefAttributes<HTMLDivElement>>(
+const DropdownMenuLabel = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & CSSProps>(
     ({children, css, ...props}, ref) => {
         return (
             <StyledLabel css={css} {...props} ref={ref}>
@@ -78,7 +79,7 @@ const DropdownMenuLabel = forwardRef<HTMLDivElement, any & React.RefAttributes<H
         )
 })
 
-const DropdownMenuArrow = forwardRef<HTMLDivElement, any & React.RefAttributes<HTMLDivElement>>(
+const DropdownMenuArrow = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & CSSProps>(
     ({children, css, ...props}, ref) => {
         return (
             <StyledArrow css={css} {...props} ref={ref}>

@@ -3,6 +3,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { styled } from "@stitches/react";
 import { forwardRef } from "react";
 import type { ComponentPropsWithoutRef } from "react";
+import { CSSProps } from '../../types';
 
 const StyledDrawerDescription = styled(Dialog.Description, {});
 
@@ -146,7 +147,7 @@ const DrawerContent = forwardRef<HTMLDivElement, ContentProps>(function (
     );
 });
 
-const DrawerDescription = forwardRef<HTMLDivElement, any & React.RefAttributes<HTMLDivElement>>(
+const DrawerDescription = forwardRef<HTMLDivElement, Dialog.DialogDescriptionProps & CSSProps>(
     ({children, css, ...props}, ref) => {
         return (
             <StyledDrawerDescription css={css} {...props} ref={ref}>
