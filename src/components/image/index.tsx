@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 import { styled } from '@stitches/react';
-import * as AspectRatioPrimitive from "@radix-ui/react-aspect-ratio"
-import {CSSProps} from "../../types";
+import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio';
+
 const AspectRatio = AspectRatioPrimitive.Root
 type ImageProps = {
     src: string;
     alt: string
     aspectRatio?: [number, number];
-} & React.ImgHTMLAttributes<HTMLImageElement> & CSSProps;
+} & React.ImgHTMLAttributes<HTMLImageElement> & any;
 
 const StyledImage = styled('img', {});
 
@@ -18,11 +18,9 @@ const Image = React.forwardRef<HTMLDivElement | HTMLImageElement, ImageProps>(
             <StyledImage src={src} alt={alt} css={css} {...props} />
         </AspectRatio>
     }
-    return <AspectRatio ref={ref}>
-        <StyledImage src={src} alt={alt} css={css} {...props} />
-    </AspectRatio>
+    return <StyledImage src={src} alt={alt} css={css} ref={ref} {...props} />
 })
 
-Image.displayName = 'Image';
+Image.displayName = 'Image'
 
-export default Image;
+export {Image}
