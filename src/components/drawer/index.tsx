@@ -12,7 +12,13 @@ type ContentProps = ComponentPropsWithoutRef<typeof Dialog.Content> & {
     size: string | number;
     radius?: number;
     visible?: boolean;
-};
+} & CSSProps;
+
+const StyledDrawerContent  = styled(Dialog.Content, {
+    boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3)",
+    overflow: "auto",
+    position: "fixed",
+})
 
 const DrawerContent = forwardRef<HTMLDivElement, ContentProps>(function (
     { style, ...props },
@@ -69,37 +75,34 @@ const DrawerContent = forwardRef<HTMLDivElement, ContentProps>(function (
                             }}
                         />
                     </Dialog.Overlay>
-                    <Dialog.Content
+                    <DrawerContentRender
                         asChild
                         ref={ref}
                         style={{
                             ...style,
-                            boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3)",
-                            overflow: "auto",
-                            position: "fixed",
                             borderTopLeftRadius:
                                 props.radius &&
                                 (props.origin === "bottom" ||
                                     props.origin === "right")
-                                    ? 20
+                                    ? props.radius
                                     : undefined,
                             borderTopRightRadius:
                                 props.radius &&
                                 (props.origin === "bottom" ||
                                     props.origin === "left")
-                                    ? 20
+                                    ? props.radius
                                     : undefined,
                             borderBottomLeftRadius:
                                 props.radius &&
                                 (props.origin === "top" ||
                                     props.origin === "right")
-                                    ? 20
+                                    ? props.radius
                                     : undefined,
                             borderBottomRightRadius:
                                 props.radius &&
                                 (props.origin === "top" ||
                                     props.origin === "left")
-                                    ? 20
+                                    ? props.radius
                                     : undefined,
                             left: props.origin === "left" ? 0 : undefined,
                             right:
@@ -140,7 +143,7 @@ const DrawerContent = forwardRef<HTMLDivElement, ContentProps>(function (
                         >
                             {props.children}
                         </motion.div>
-                    </Dialog.Content>
+                    </DrawerContentRender>
                 </Dialog.Portal>
             )}
         </AnimatePresence>
@@ -153,6 +156,15 @@ const DrawerDescription = forwardRef<HTMLDivElement, Dialog.DialogDescriptionPro
             <StyledDrawerDescription css={css} {...props} ref={ref}>
                 {children}
             </StyledDrawerDescription>
+        )
+})
+
+const DrawerContentRender = forwardRef<HTMLDivElement, Dialog.DialogContentProps & CSSProps>(
+    ({children, css, ...props}, ref) => {
+        return (
+            <StyledDrawerContent css={css} {...props} ref={ref}>
+                {children}
+            </StyledDrawerContent>
         )
 })
 
