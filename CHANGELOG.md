@@ -1,5 +1,12 @@
 # icoms-components
 
+## 0.7.0
+
+### Minor Changes
+
+- 9cc12c2: Added menubar component
+- a873c41: Added menubar component
+
 ## 0.6.2
 
 ### Patch Changes
