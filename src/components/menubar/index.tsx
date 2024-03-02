@@ -12,15 +12,20 @@ import {
     Group,
     MenubarProps,
     MenubarGroupProps,
-    MenubarTriggerProps, MenubarSubTriggerProps, MenubarSubContentProps
+    MenubarTriggerProps,
+    MenubarSubTriggerProps,
+    MenubarSubContentProps,
 } from '@radix-ui/react-menubar';
 import { styled } from '@stitches/react';
 import { blackA, violet, mauve } from '@radix-ui/colors';
-import {CSSProps} from "../../types";
-import React from "react";
-import {MenubarContentProps, MenubarItemProps} from "@radix-ui/react-menubar/dist";
+import { CSSProps } from '../../types';
+import React from 'react';
+import {
+    MenubarContentProps,
+    MenubarItemProps,
+} from '@radix-ui/react-menubar/dist';
 // import { CheckIcon, ChevronRightIcon, DotFilledIcon } from '@radix-ui/react-icons';
-
+// Add ths line to rerun the changeset on commit
 const itemStyles = {
     all: 'unset',
     fontSize: 13,
@@ -72,18 +77,27 @@ const StyledRoot = styled(Root, {
     boxShadow: `0 2px 10px ${blackA.blackA4}`,
 });
 
-const Menubar = React.forwardRef<HTMLDivElement, MenubarProps & React.RefAttributes<HTMLDivElement> & CSSProps>(
-    ({children, css, ...props}, ref) => {
-        return <StyledRoot css={css} {...props} ref={ref}>
+const Menubar = React.forwardRef<
+    HTMLDivElement,
+    MenubarProps & React.RefAttributes<HTMLDivElement> & CSSProps
+>(({ children, css, ...props }, ref) => {
+    return (
+        <StyledRoot css={css} {...props} ref={ref}>
             {children}
         </StyledRoot>
-})
-
+    );
+});
 
 const StyledGroup = styled(Group, {});
-const MenubarGroup = React.forwardRef<HTMLDivElement, MenubarGroupProps & React.RefAttributes<HTMLDivElement> & CSSProps>(
-    ({css, children, ...rest}, ref) => {
-        return <StyledGroup css={css} {...rest} ref={ref}>{children}</StyledGroup>
+const MenubarGroup = React.forwardRef<
+    HTMLDivElement,
+    MenubarGroupProps & React.RefAttributes<HTMLDivElement> & CSSProps
+>(({ css, children, ...rest }, ref) => {
+    return (
+        <StyledGroup css={css} {...rest} ref={ref}>
+            {children}
+        </StyledGroup>
+    );
 });
 
 const StyledTrigger = styled(Trigger, {
@@ -104,44 +118,54 @@ const StyledTrigger = styled(Trigger, {
         backgroundColor: violet.violet4,
     },
 });
-const MenubarTrigger = React.forwardRef<HTMLButtonElement, React.RefAttributes<HTMLButtonElement> & MenubarTriggerProps & CSSProps>(
-    ({children, css, ...props}, forwardedRef) => {
-        return <StyledTrigger css={css} {...props} ref={forwardedRef}>
+const MenubarTrigger = React.forwardRef<
+    HTMLButtonElement,
+    React.RefAttributes<HTMLButtonElement> & MenubarTriggerProps & CSSProps
+>(({ children, css, ...props }, forwardedRef) => {
+    return (
+        <StyledTrigger css={css} {...props} ref={forwardedRef}>
             {children}
         </StyledTrigger>
-    }
-);
+    );
+});
 
 const StyledContent = styled(Content, contentStyles);
 
-const MenubarContent = React.forwardRef<HTMLDivElement, MenubarContentProps & React.RefAttributes<HTMLDivElement> & CSSProps>(
-    ({children, css, ...props}, forwardedRef) => {
-        return <StyledContent css={css} {...props} ref={forwardedRef}>
+const MenubarContent = React.forwardRef<
+    HTMLDivElement,
+    MenubarContentProps & React.RefAttributes<HTMLDivElement> & CSSProps
+>(({ children, css, ...props }, forwardedRef) => {
+    return (
+        <StyledContent css={css} {...props} ref={forwardedRef}>
             {children}
         </StyledContent>
-    }
-);
+    );
+});
 
 const StyledItem = styled(Item, itemStyles);
 
-const MenubarItem = React.forwardRef<HTMLDivElement, MenubarItemProps & React.RefAttributes<HTMLDivElement> & CSSProps>(
-    ({children, css, ...props}, forwardedRef) => {
-        return <StyledItem css={css} {...props} ref={forwardedRef}>
+const MenubarItem = React.forwardRef<
+    HTMLDivElement,
+    MenubarItemProps & React.RefAttributes<HTMLDivElement> & CSSProps
+>(({ children, css, ...props }, forwardedRef) => {
+    return (
+        <StyledItem css={css} {...props} ref={forwardedRef}>
             {children}
         </StyledItem>
-    }
-);
+    );
+});
 
 const StyledSeparator = styled(Separator, {
     height: 1,
     backgroundColor: violet.violet6,
     margin: 5,
 });
-const MenubarSeparator = React.forwardRef<HTMLDivElement, React.RefAttributes<HTMLDivElement> & CSSProps>(
-    ({css, ...props}, forwardedRef) => {
-        return <StyledSeparator css={css} {...props} ref={forwardedRef} />
-    }
-);
+const MenubarSeparator = React.forwardRef<
+    HTMLDivElement,
+    React.RefAttributes<HTMLDivElement> & CSSProps
+>(({ css, ...props }, forwardedRef) => {
+    return <StyledSeparator css={css} {...props} ref={forwardedRef} />;
+});
 
 const StyledSubTrigger = styled(SubTrigger, {
     '&[data-state="open"]': {
@@ -150,18 +174,28 @@ const StyledSubTrigger = styled(SubTrigger, {
     },
     ...itemStyles,
 });
-const MenubarSubTrigger = React.forwardRef<HTMLDivElement, MenubarSubTriggerProps & React.RefAttributes<HTMLDivElement> & CSSProps>(
-    ({children, css, ...props}, forwardedRef) => {
-        return <StyledSubTrigger css={css} {...props} ref={forwardedRef}>{children}</StyledSubTrigger>
-    }
-);
+const MenubarSubTrigger = React.forwardRef<
+    HTMLDivElement,
+    MenubarSubTriggerProps & React.RefAttributes<HTMLDivElement> & CSSProps
+>(({ children, css, ...props }, forwardedRef) => {
+    return (
+        <StyledSubTrigger css={css} {...props} ref={forwardedRef}>
+            {children}
+        </StyledSubTrigger>
+    );
+});
 
 const StyledSubContent = styled(SubContent, contentStyles);
-const MenubarSubContent = React.forwardRef<HTMLDivElement, MenubarSubContentProps & React.RefAttributes<HTMLDivElement> & CSSProps>(
-    ({children, css, ...props}, forwardedRef) => {
-        return <StyledSubContent css={css} {...props} ref={forwardedRef}>{children}</StyledSubContent>
-    }
-);
+const MenubarSubContent = React.forwardRef<
+    HTMLDivElement,
+    MenubarSubContentProps & React.RefAttributes<HTMLDivElement> & CSSProps
+>(({ children, css, ...props }, forwardedRef) => {
+    return (
+        <StyledSubContent css={css} {...props} ref={forwardedRef}>
+            {children}
+        </StyledSubContent>
+    );
+});
 
 const MenubarPortal = Portal;
 const MenubarSub = Sub;
@@ -178,5 +212,5 @@ export {
     MenubarSubContent,
     MenubarItem,
     MenubarSeparator,
-    MenubarMenu
-}
+    MenubarMenu,
+};
